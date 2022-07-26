@@ -21,7 +21,7 @@ function CalculateDrag(HUD H, SS_HUDPAI_WorldInteraction wi, Vector2D point)
 
     if(bEnableDragDebug)
     {
-        wi.DrawCenterMat(H, point.X, point.Y, 64, 64, Material'SS_Minigame_Content.Material.Cross_UI');
+        wi.DrawCenterMat(H, point.X, point.Y, 64, 64, Material'SS_PAI_Content.Material.Cross_UI');
         wi.DrawBorderedText(H.Canvas, "DragPoint = (" $ Int(point.X) $ ", " $ Int(point.Y) $ ")", point.X, point.Y - DEBUG_TEXT_OFFSET, DEBUG_TEXT_SIZE,,TextAlign_Center);
     }
 

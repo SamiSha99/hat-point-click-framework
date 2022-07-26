@@ -76,5 +76,5 @@ defaultproperties
     InteractRange = 600.0f;
     bSuppressWatchDog = true;
     MouseSize = 0.08f;
-    FirstPersonAimMarker = Texture2D'SS_Minigame_Content.Crosshair';
+    FirstPersonAimMarker = Texture2D'SS_PAI_Content.Crosshair';
 }

@@ -22,7 +22,7 @@ defaultproperties
     MouseClickColor = (R = 0, G = 51, B = 255, A = 255);
 
     Begin Object Class=SpriteComponent Name=Sprite
-		Sprite = Texture2D'SS_Minigame_Content.Cursor'
+		Sprite = Texture2D'SS_PAI_Content.Cursor'
 		HiddenGame=true
 		HiddenEditor=false
 		AlwaysLoadOnClient=False

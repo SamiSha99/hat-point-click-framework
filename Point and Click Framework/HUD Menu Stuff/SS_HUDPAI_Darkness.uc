@@ -51,7 +51,7 @@ function ManageDarkMaterial(HUD H)
 
 defaultproperties
 {
-    DarkInterface = Material'SS_Minigame_Content.Material.DarkHUD';
+    DarkInterface = Material'SS_PAI_Content.Material.DarkHUD';
     Size = 0.25f;
     SizeWobble = 0.05f;
 }

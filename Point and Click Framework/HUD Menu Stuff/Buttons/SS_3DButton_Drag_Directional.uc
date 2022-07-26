@@ -31,11 +31,11 @@ function CalculateDrag(HUD H, SS_HUDPAI_WorldInteraction wi, Vector2D point)
     
     if(bEnableDragDebug)
     {
-        wi.DrawCenterMat(H, DragStart.X, DragStart.Y, 64, 64, Material'SS_Minigame_Content.Material.Cross_UI');
+        wi.DrawCenterMat(H, DragStart.X, DragStart.Y, 64, 64, Material'SS_PAI_Content.Material.Cross_UI');
         wi.DrawBorderedText(H.Canvas, "DragStart = (" $ Int(DragStart.X) $ ", " $ Int(DragStart.Y) $ ")", DragStart.X, DragStart.Y - DEBUG_TEXT_OFFSET, DEBUG_TEXT_SIZE,,TextAlign_Center);
-        wi.DrawCenterMat(H, DragEnd.X, DragEnd.Y, 64, 64, Material'SS_Minigame_Content.Material.Cross_UI');
+        wi.DrawCenterMat(H, DragEnd.X, DragEnd.Y, 64, 64, Material'SS_PAI_Content.Material.Cross_UI');
         wi.DrawBorderedText(H.Canvas, "DragEnd = (" $ Int(DragEnd.X) $ ", " $ Int(DragEnd.Y) $ ")", DragEnd.X, DragEnd.Y - DEBUG_TEXT_OFFSET, DEBUG_TEXT_SIZE,,TextAlign_Center);
-        wi.DrawCenterMat(H, DragPoint.X, DragPoint.Y, 64, 64, Material'SS_Minigame_Content.Material.Cross_UI');
+        wi.DrawCenterMat(H, DragPoint.X, DragPoint.Y, 64, 64, Material'SS_PAI_Content.Material.Cross_UI');
         wi.DrawBorderedText(H.Canvas, "DragPoint = (" $ Int(DragPoint.X) $ ", " $ Int(DragPoint.Y) $ ")", DragPoint.X, DragPoint.Y + DEBUG_TEXT_OFFSET, DEBUG_TEXT_SIZE,,TextAlign_Center);
     }
     

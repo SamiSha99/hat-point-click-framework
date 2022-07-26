@@ -384,7 +384,7 @@ defaultproperties
     RequiresMouse = true;
 
     // Mouse
-    MouseMat = Material'SS_Minigame_Content.Cursor_Mat';
+    MouseMat = Material'SS_PAI_Content.Cursor_Mat';
     //DefaultHoverTexture = ;
     MouseSize = 0.1f;
 
