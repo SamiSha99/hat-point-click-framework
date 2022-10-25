@@ -3,10 +3,12 @@ class SS_SeqAct_ModifyInteractHUD extends SequenceAction;
 //var Actor PlayerTarget;
 var(Settings) float InteractRange; // Range of interaction, -1 => infinity
 var(Pointer) bool bCustomMouse; // If false, uses default mouse while using a mouse, consoles are ignored
+var(Pointer) MaterialInterface MouseMaterial; // Set up a new material for the mouse, THIS WILL INITIALIZE THE MOUSE AGAIN!!!
 var(Pointer) Texture2D MouseTexture; // Easy custom mouse texture replacement
 var(Pointer) float MouseOffset; // DEFAULT IS 0.0225f!!! IT'S REALLY SMALL!!!
 
 var(Pointer) bool DesaturateMouse; // Desaturate Mouse to allow custom coloring instead, don't activate this if your mouse texture a solid color by default!
+var(Pointer) bool UseCrosshair; // Use Crosshair instead of a mouse, Mouseoffset is 0 if this is enabled
 var(Pointer) Color MouseColor, MouseClickColor <EditCondition=DesaturateMouse>; // Change colors of the mouse in those stats! REQUIRES DESATURATEDMOUSE!
 
 final function Print(coerce string msg)
@@ -40,10 +42,13 @@ event Activated()
             wi = SS_HUDPAI_WorldInteraction(GetHUD(pc.MyHUD));
             wi.InteractRange = InteractRange;
             wi.bCustomMouse = bCustomMouse;
+            if(MouseMaterial != None)
+                wi.InitCustomMouse(MouseMaterial);
             if(MouseTexture != None)
                 wi.SetNewMouseTexture(MouseTexture);
-            wi.CustomMousePositionOffset = MouseOffset;
+            wi.CustomMousePositionOffset = UseCrosshair ? 0.0f : MouseOffset;
             wi.UpdateCustomMouseColors(DesaturateMouse, MouseColor, MouseClickColor);
+            wi.ToggleCrosshair(UseCrosshair);
         }
         OutputLinks[0].bHasImpulse = true;
     }
