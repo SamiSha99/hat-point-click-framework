@@ -1,14 +1,6 @@
 // HUD Menu that activates during First Person
 Class SS_HUDPAI_FP_Interact extends SS_HUDPAI_WorldInteraction;
 
-var Texture2D FirstPersonAimMarker;
-
-function OnOpenHUD(HUD H, optional String command)
-{
-    Super.OnOpenHUD(H, command);
-    SetNewMouseTexture(FirstPersonAimMarker);
-}
-
 function bool PointOnClickable(HUD H, optional Vector2D point)
 {
     if(!IsFirstPerson(H))
@@ -76,5 +68,7 @@ defaultproperties
     InteractRange = 600.0f;
     bSuppressWatchDog = true;
     MouseSize = 0.08f;
-    FirstPersonAimMarker = Texture2D'SS_PAI_Content.Crosshair';
+    // No more textures, handled via mat
+    UseCrosshairMat = true
+    MouseMat = MaterialInstanceConstant'SS_PAI_Content.Cursor_Mat_Crosshair'
 }

@@ -4,8 +4,9 @@ Class SS_PointerManager extends Actor
 var(Globals) bool ShowHighlighter; // Show higlighter for buttons
 var(Globals) bool ShowHighlighterForEnabledButtons <EditCondition=ShowHighlighter>; // When hovering show highlighter on ENABLED buttons
 var(Globals) bool ShowHighlighterForDisabledButtons <EditCondition=ShowHighlighter>; // When hovering show highlighter on DISABLED buttons
-var(Globals) float GamePadSpeedMultipier <UIMin=0.1 | UIMax=3.0>;
+var(Globals) float GamePadSpeedMultipier <UIMin=0.1 | UIMax=5.0>;
 
+var(Pointer) bool UseCrosshairMat; // Will use a built in crosshair defaults whenever the system gets run instead!
 var(Pointer) bool DesaturateMouse; // Desaturate Mouse to allow custom coloring instead, don't activate this if your mouse texture a solid color by default!
 var(Pointer) Color MouseColor, MouseClickColor <EditCondition=DesaturateMouse>; // REQUIRES DesaturatedMouse set to true!
 var(Pointer) float CustomMousePositionOffset; // Offset the texture for correct point

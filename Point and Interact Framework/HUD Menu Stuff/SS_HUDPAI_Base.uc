@@ -13,7 +13,7 @@ var float GamePadSpeedMultipier;
 
 // Custom Mouse
 var bool bCustomMouse;
-var bool Greyscaled;
+var bool Greyscaled, UseCrosshairMat;
 var MaterialInterface MouseMat;
 var Texture2D MouseTexture;
 var MaterialInstanceTimeVarying CustomMouse;
@@ -28,6 +28,7 @@ const MOUSE_PARAMETER_TEXTURE = 'MouseTexture';
 const MOUSE_PARAMETER_GREYSCALE = 'Desaturate';
 const MOUSE_PARAMETER_PRESSED_COLOR = 'PressColor';
 const MOUSE_PARAMETER_RELEASED_COLOR = 'ReleaseColor';
+const MOUSE_PARAMETER_USE_MOUSE_CROSSHAIR = 'UseCrosshairMat';
 
 // Highlighter, just call CornerBorders(...); with the right values!
 var bool ShowHighlighter;
@@ -207,12 +208,12 @@ function SetCustomMouse(HUD H, bool b)
 }
 
 // Initialize the Mouse Material and save it into the global variable CustomMouse
-function InitCustomMouse()
+function InitCustomMouse(optional MaterialInterface CustomMouseMat = None)
 {
     local MaterialInstanceTimeVarying m;
     local LinearColor mc, mcc;
     m = new Class'MaterialInstanceTimeVarying';
-    m.SetParent(MouseMat);
+    m.SetParent(CustomMouseMat == None ? MouseMat : CustomMouseMat);
     // Custom texture? We got it!
     if(MouseTexture != None) m.SetTextureParameterValue(MOUSE_PARAMETER_TEXTURE, MouseTexture);
 
@@ -227,6 +228,7 @@ function InitCustomMouse()
 
     CustomMouse = m;
     CustomMouse.SetScalarParameterValue(MOUSE_PARAMETER_GREYSCALE, Greyscaled ? 1.0f : 0.0f);
+    CustomMouse.SetScalarParameterValue(MOUSE_PARAMETER_USE_MOUSE_CROSSHAIR, UseCrosshairMat ? 1.0f : 0.0f);
 }
 
 function UpdateCustomMouseColors(bool bDesaturate, Color ReleaseColor, Color PressColor)
@@ -252,6 +254,13 @@ function UpdateCustomMouseColors(bool bDesaturate, Color ReleaseColor, Color Pre
     CustomMouse.SetScalarParameterValue(MOUSE_PARAMETER_GREYSCALE, Greyscaled ? 1.0f : 0.0f);
     CustomMouse.SetLinearColorParameterValue(MOUSE_PARAMETER_RELEASED_COLOR, mc);
     CustomMouse.SetLinearColorParameterValue(MOUSE_PARAMETER_PRESSED_COLOR, mcc);
+}
+
+function ToggleCrosshair(bool b)
+{
+    if(CustomMouse == None) return;
+    UseCrosshairMat = b;
+    CustomMouse.SetScalarParameterValue(MOUSE_PARAMETER_USE_MOUSE_CROSSHAIR, UseCrosshairMat ? 1.0f : 0.0f);
 }
 
 function SetNewMouseTexture(Texture2D mt)
@@ -357,6 +366,7 @@ function bool AdjustToGlobal()
     Global_PointManager = GetGlobalManager();
     if(Global_PointManager == None) return false;
 
+    UseCrosshairMat = Global_PointManager.UseCrosshairMat;
     Greyscaled = Global_PointManager.DesaturateMouse;
     MouseColor = Global_PointManager.MouseColor;
     MouseClickColor = Global_PointManager.MouseClickColor;
