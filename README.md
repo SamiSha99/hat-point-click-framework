@@ -1,4 +1,4 @@
-# Point and Interact Framework v1.0.0
+# Point and Interact Framework v1.1.0
 A framework made for modding puporses that allows modders to create point and click interactivity between the player and the world around them. The system is entirely built upon "Hat_HUD" a system found in the game with the addition of interactivity through actors and Kismet functionality.
 
 The implementation is quick and simple and allows a lot of customizability through changing the mouse look, colors when Un/Hovering and size.
@@ -38,6 +38,8 @@ function bool IsFirstPerson(HUD H)
     return false;
 }
 ```
+This HUD also automatically set `UseCrosshairMat` to true, which instead of using a mouse, will use a built in crosshair material that can be set with a new MaterialInterface, see the Crosshair section for more info, at the bottom.
+
 ## Global and Local Alteration
 
 ### **Global**
@@ -98,3 +100,12 @@ Similarly to `SS_3DButton_Drag` but limited through a Volume only.
 
 ## Console Support
 This framework has full console support, meaning joysticks will work properly in moving the mouse around the screen to interact with anything visible.
+
+## Crosshair instead of a Mouse
+As of 1.1v, Crosshair has been replaced from being a flat texture with a new Crosshair built into the Mouse material using many different type of variables, the content package in this github repo should provide some samples made as an example to showcase the flexibility of the system.
+
+![](https://i.imgur.com/FicYmg6.png)
+
+If you would like to make your own one, I heavily to make an Material Instance of `MaterialInstanceConstant'SS_PAI_Content.Cursor_Mat_Crosshair'` found in the content package and mess around with the values to make your own Crosshair and then either replace the line found at the bottom inside `defaultproperties` the Class `SS_HUDPAI_FP_Interact->MouseMat` with the new Material OR use the kismet node `Modify Interact HUD` to set a new Mouse Material and check "UseCrosshair".
+
+Crosshair supports coloring (requires `DesaturateMouse` set to true) and everything else that happens, including overriding the material with a mouse texture if it hovers on any 3Dbutton, Crosshair acts as the default mouse look and nothing else.
