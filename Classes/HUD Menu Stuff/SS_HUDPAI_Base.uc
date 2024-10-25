@@ -147,6 +147,9 @@ function CornerBorders(HUD H, float t, Vector2D Pos, optional bool Squared = tru
     
     if(Squared)
         Scale.X = Scale.Y * ScreenToSquaredRatio(H);
+    // Fixes corner shapes being inconsistent at different aspect ratios when not squared. Credits: UnDrew
+    else
+	Scale.X *= ScreenToSquaredRatio(H, false);
     // Reminder: [0, 0] to [maxWidth, maxHeight] is from: top left corner TO bottom right!!!
     up = Pos.Y - Scale.Y;
     down = Pos.Y + Scale.Y;
